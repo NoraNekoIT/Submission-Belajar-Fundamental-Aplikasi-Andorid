@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/drawable/splash_bg.xml" value="0.1" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/activity_detail.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/fragment_dashboard.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/fragment_home.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/item_row_user.xml" value="0.1" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/layout_detail.xml" value="0.33" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/layout/user_item.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/bunsm/Desktop/Belajar/Facilitator/Submission dicoding/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

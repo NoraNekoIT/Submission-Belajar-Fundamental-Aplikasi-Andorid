@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">bfaa</string>
+    <string name="tv_username">noranekoit</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="soon">Soon Feature</string>
+    <string name="name">Antonius Bun Wijaya</string>
+    <string name="username">NoraNekoIT</string>
+    <string name="company">Company : %s</string>
+    <string name="location">Location : %s</string>
+    <string name="jumlah_repository">Repository : %d</string>
+    <string name="follower">Follower : %d</string>
+    <string name="following">Following : %d</string>
+</resources>
