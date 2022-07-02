@@ -50,7 +50,6 @@ class HomeFragment : Fragment() {
         binding.searchBar.setOnQueryTextListener(
             object:SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
-//                    adapter?.getFilter()?.filter(query)
                     return false
                 }
 

@@ -30,7 +30,7 @@
                 android:id="@+id/iv_item_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
+                android:contentDescription="@string/avatar_user"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax" />

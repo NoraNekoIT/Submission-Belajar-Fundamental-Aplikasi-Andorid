@@ -13,4 +13,5 @@
     <string name="jumlah_repository">Repository : %d</string>
     <string name="follower">Follower : %d</string>
     <string name="following">Following : %d</string>
+    <string name="avatar_user">avatar user</string>
 </resources>

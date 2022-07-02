@@ -1,15 +1,13 @@
 package com.noranekoit.submission.dicoding.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.noranekoit.submission.dicoding.R
+import com.noranekoit.submission.dicoding.databinding.ItemRowUserBinding
 import com.noranekoit.submission.dicoding.model.UserResponseItem
+import com.noranekoit.submission.dicoding.util.UserDiffCallback
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -21,31 +19,33 @@ class UserAdapter(private val listUser: ArrayList<UserResponseItem>) :
         addAll(listUser)
     }
 
+    private fun setData(newListData: List<UserResponseItem>?){
+        if (newListData == null) return
+        val diffUtil = UserDiffCallback(listUser,newListData)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+        listUser.clear()
+        listUser.addAll(newListData)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback?) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imgAvatar: ImageView = itemView.findViewById(R.id.iv_user)
-        var tvUsername: TextView = itemView.findViewById(R.id.tv_username)
-    }
+    inner class ListViewHolder(var binding: ItemRowUserBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_row_user,
-            parent,
-            false
-        )
-        return ListViewHolder(view)
+        val binding = ItemRowUserBinding.inflate(LayoutInflater.from(parent.context), parent,false)
+        return ListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val avatar = listUser[position].avatar
         val username = listUser[position].username
         if (avatar != null) {
-            holder.imgAvatar.setImageResource(avatar)
+            holder.binding.ivUser.setImageResource(avatar)
         }
-        holder.tvUsername.text = username
+        holder.binding.tvUsername.text = username
         holder.itemView.setOnClickListener {
             onItemClickCallback?.onItemClicked(listUser[holder.adapterPosition])
         }
@@ -80,20 +80,13 @@ class UserAdapter(private val listUser: ArrayList<UserResponseItem>) :
             return results
         }
 
-        @Suppress("UNCHECKED_CAST")
-        @SuppressLint("NotifyDataSetChanged")
         override fun publishResults(cari: CharSequence?, result: FilterResults?) {
             if (result?.values is ArrayList<*>){
                 val listResult = result.values
                         as ArrayList<UserResponseItem>
-                listUser.clear()
-                listUser.addAll(listResult)
-                notifyDataSetChanged()
+                setData(listResult)
             }
         }
 
-
     }
-
 }
-
