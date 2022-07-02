@@ -87,6 +87,5 @@ class UserAdapter(private val listUser: ArrayList<UserResponseItem>) :
                 setData(listResult)
             }
         }
-
     }
 }
