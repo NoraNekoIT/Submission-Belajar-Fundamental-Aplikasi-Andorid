@@ -3,6 +3,7 @@ package com.noranekoit.submission.dicoding.ui.home
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.noranekoit.submission.dicoding.model.UserResponseItem
 import com.noranekoit.submission.dicoding.ui.detail.DetailActivity
 import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
@@ -48,7 +50,7 @@ class HomeFragment : Fragment() {
         getGithubList()
         showRecycler()
         binding.searchBar.setOnQueryTextListener(
-            object:SearchView.OnQueryTextListener{
+            object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
@@ -69,34 +71,31 @@ class HomeFragment : Fragment() {
 
     private fun getGithubList() {
         val myJson = loadJsonFromAsset()
-
         try {
-
-            val jsonArray = JSONArray(myJson)
-
-            for (i in 0 until jsonArray.length()) {
-                val user = UserResponseItem()
-                val jsonObjectUser = jsonArray.getJSONObject(i)
-
-                val avatarResource = resources.getIdentifier(
-                    jsonObjectUser.getString("avatar"),
-                    null,
-                    requireActivity().packageName
-                )
-                user.apply {
-                    username = jsonObjectUser.getString("username")
-                    name = jsonObjectUser.getString("name")
-                    avatar = avatarResource
-                    company = jsonObjectUser.getString("company")
-                    location = jsonObjectUser.getString("location")
-                    repository = jsonObjectUser.getInt("repository")
-                    follower = jsonObjectUser.getInt("follower")
-                    following = jsonObjectUser.getInt("following")
+            if (myJson != null) {
+                val jsonObject = JSONObject(myJson)
+                val jsonArray = jsonObject.getJSONArray("users")
+                for (i in 0 until jsonArray.length()) {
+                    val user = UserResponseItem()
+                    val jsonObjectUser = jsonArray.getJSONObject(i)
+                    val avatarResource = resources.getIdentifier(
+                        jsonObjectUser.getString("avatar"),
+                        null,
+                        requireActivity().packageName
+                    )
+                    user.apply {
+                        username = jsonObjectUser.getString("username")
+                        name = jsonObjectUser.getString("name")
+                        avatar = avatarResource
+                        company = jsonObjectUser.getString("company")
+                        location = jsonObjectUser.getString("location")
+                        repository = jsonObjectUser.getInt("repository")
+                        follower = jsonObjectUser.getInt("follower")
+                        following = jsonObjectUser.getInt("following")
+                    }
+                    listUser.add(user)
                 }
-
-                listUser.add(user)
             }
-
         } catch (e: JSONException) {
             e.printStackTrace()
         }
@@ -128,7 +127,7 @@ class HomeFragment : Fragment() {
         adapter = UserAdapter(listUser)
         rvUser.adapter = adapter
         adapter?.setOnItemClickCallback(
-            object :UserAdapter.OnItemClickCallback{
+            object : UserAdapter.OnItemClickCallback {
                 override fun onItemClicked(userResponseItem: UserResponseItem) {
                     showSelectedUser(userResponseItem)
                 }
@@ -137,11 +136,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun showSelectedUser(user: UserResponseItem) {
-        Toast.makeText(requireActivity(), "Kamu memilih github dengan username " +
-                user.username, Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            requireActivity(), "Kamu memilih github dengan username " +
+                    user.username, Toast.LENGTH_SHORT
+        ).show()
 
         val moveWithData = Intent(this.requireActivity(), DetailActivity::class.java)
-        moveWithData.putExtra(DetailActivity.EXTRA_DATA,user)
+        moveWithData.putExtra(DetailActivity.EXTRA_DATA, user)
         startActivity(moveWithData)
     }
 
